@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#FAFAFA] text-dark font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer components {
+
+  /* Container override if needed, though Tailwind has a default. 
+     We match the design system I set up: max-w-7xl, centered. */
+  .container {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  /* Button Components */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 transform cursor-pointer border-none;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white shadow-lg shadow-primary/30 hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-primary/40;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-dark border-2 border-dark hover:bg-dark hover:text-white;
+  }
+}
+
+/* Custom scrollbar to match the "Design Aesthetics" */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}
