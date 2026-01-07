@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 
 const menuItems = [
@@ -31,7 +32,7 @@ const Menu = () => {
                             key={cat}
                             onClick={() => setFilter(cat)}
                             className={`px-6 py-2 rounded-full font-medium transition-all ${filter === cat
-                                ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                                ? 'bg-simmer-orange text-white shadow-lg shadow-simmer-orange/30'
                                 : 'bg-white text-gray-600 hover:bg-gray-100'
                                 }`}
                         >
@@ -52,16 +53,16 @@ const Menu = () => {
                         >
                             <div className="h-48 overflow-hidden relative">
                                 <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-bold">
+                                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-simmer-dark">
                                     {item.cals} kcal
                                 </div>
                             </div>
                             <div className="p-6">
-                                <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wide">{item.category}</div>
-                                <h3 className="text-xl font-bold mb-4">{item.name}</h3>
-                                <button className="w-full py-3 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2">
+                                <div className="text-xs font-bold text-simmer-orange mb-2 uppercase tracking-wide">{item.category}</div>
+                                <h3 className="text-xl font-bold mb-4 text-simmer-dark">{item.name}</h3>
+                                <Link to="/get-started" className="w-full py-3 rounded-lg border-2 border-simmer-orange text-simmer-orange font-bold hover:bg-simmer-orange hover:text-white transition-colors flex items-center justify-center gap-2">
                                     <Plus size={18} /> Add to Plan
-                                </button>
+                                </Link>
                             </div>
                         </motion.div>
                     ))}

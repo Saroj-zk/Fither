@@ -1,8 +1,11 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChefHat, Stethoscope, Clock, Heart, Star, Sparkles, ShieldCheck, Truck, Leaf, Play } from 'lucide-react';
+import { ArrowRight, ChefHat, Stethoscope, Clock, Heart, Star, Sparkles, ShieldCheck, Truck, Leaf, Play, CheckCircle } from 'lucide-react';
 import FoodCarousel from '../components/FoodCarousel';
+import MediaLogos from '../components/MediaLogos';
+import RunningBanner from '../components/RunningBanner';
+import { Star as StarIcon } from 'lucide-react'; // Renaming to avoid conflict if needed, though mostly using Lucide default
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -24,225 +27,215 @@ const Home = () => {
     const heroTextY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
     return (
-        <div ref={targetRef} className="overflow-x-hidden">
+        <div ref={targetRef} className="overflow-x-hidden pt-[90px]">
             {/* Hero Section */}
-            <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden">
-                {/* Background Shapes */}
-                <div className="absolute top-0 right-0 w-[60%] h-[90%] bg-gradient-to-bl from-orange-50 to-pink-50 rounded-bl-[300px] -z-20 opacity-70" />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.1, 1],
-                        rotate: [0, 5, -5, 0],
-                        filter: ["blur(40px)", "blur(60px)", "blur(40px)"]
-                    }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-20 right-20 w-[500px] h-[500px] bg-primary/10 rounded-full mix-blend-multiply -z-10"
-                />
+            {/* Announcement Bar */}
+            <div className="bg-simmer-purple text-white py-2 text-center border-b border-white/10 relative z-20">
+                <p className="font-bold text-xs md:text-sm tracking-widest uppercase">
+                    🇮🇳 INDIA'S FAVORITE DIET FOOD DELIVERY | GET 30% OFF YOUR 1ST MONTH 🇮🇳
+                </p>
+            </div>
 
-                <div className="container px-4 md:px-6">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-                        <motion.div
-                            style={{ y: heroTextY }}
-                            variants={staggerContainer}
-                            initial="hidden"
-                            animate="visible"
-                            className="space-y-6 md:space-y-8 text-center lg:text-left z-10"
-                        >
-                            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-full text-sm font-bold text-primary shadow-sm mx-auto lg:mx-0">
-                                <Sparkles size={16} />
-                                <span>#1 Trusted Health Kitchen</span>
-                            </motion.div>
+            {/* Hero Section */}
+            <section className="relative min-h-[85vh] flex items-center justify-start pt-10 pb-16 overflow-hidden bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")' }}>
+                <div className="absolute inset-0 bg-gradient-to-r from-simmer-dark/95 via-simmer-dark/70 to-transparent"></div> {/* Gradient Overlay for text readability on left */}
 
-                            <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold text-dark leading-[1.1] tracking-tight">
-                                Meals Like Home, <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">
-                                    Nutrition by Experts.
-                                </span>
-                            </motion.h1>
-
-                            <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                                Experience the <b>freshest meal</b> of your day. We start cooking <b>only after you order</b>—ensuring 100% healthy, preservative-free food delivered right on time.
-                            </motion.p>
-
-                            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
-                                <Link to="/get-started" className="btn btn-primary px-8 py-4 text-lg shadow-xl shadow-primary/20 hover:shadow-primary/40 transform hover:-translate-y-1 transition-all flex items-center justify-center">
-                                    Start Your Journey <ArrowRight className="ml-2 w-5 h-5" />
-                                </Link>
-                                <Link to="/menu" className="btn btn-secondary px-8 py-4 text-lg flex items-center justify-center group">
-                                    <Play size={18} className="mr-2 fill-current group-hover:text-white transition-colors" /> View Menu
-                                </Link>
-                            </motion.div>
-
-                            <motion.div variants={fadeInUp} className="pt-8 flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 text-sm text-gray-500 font-medium border-t border-gray-100 mt-4">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center"><div className="w-2 h-2 bg-green-500 rounded-full" /></div>
-                                    Specialized Women's Care
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center"><div className="w-2 h-2 bg-blue-500 rounded-full" /></div>
-                                    Fitness Plans for Everyone
-                                </div>
-                            </motion.div>
+                <div className="container relative z-10 px-4 text-left">
+                    <motion.div
+                        variants={staggerContainer}
+                        initial="hidden"
+                        animate="visible"
+                        className="max-w-3xl space-y-6"
+                    >
+                        {/* Top Badge */}
+                        <motion.div variants={fadeInUp} className="inline-block bg-simmer-yellow text-simmer-dark px-4 py-1.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest mb-4 shadow-lg border border-white/20">
+                            🌍 GLOBAL FLAVORS, INDIAN SOUL
                         </motion.div>
 
-                        {/* Interactive Hero Image -> Food Carousel */}
-                        <motion.div
-                            style={{ y: heroImageY }}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8 }}
-                            className="relative mx-auto max-w-[500px] lg:max-w-none w-full"
-                        >
-                            <FoodCarousel />
+                        <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-none uppercase tracking-tighter drop-shadow-2xl">
+                            World Class <br />
+                            <span className="text-simmer-yellow">Diet Food.</span>
+                        </motion.h1>
 
-                            {/* Floating Interactive Elements */}
-                            <motion.div
-                                animate={{ y: [0, -15, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute cursor-pointer top-8 -left-4 lg:-left-12 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center gap-3 hover:scale-105 transition-transform"
-                            >
-                                <div className="bg-orange-100 p-2 rounded-lg text-orange-600">
-                                    <Star size={20} fill="currentColor" />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-dark text-sm">Top Rated</h4>
-                                    <p className="text-xs text-gray-500">by 10,000+ Users</p>
-                                </div>
-                            </motion.div>
+                        <motion.p variants={fadeInUp} className="text-base md:text-xl text-white/90 font-medium max-w-xl leading-relaxed">
+                            From <b>Creamy Italian Pasta</b> to <b>Homestyle Dal Makhani</b>. We deliver fresh, macro-calculated meals that make weight loss delicious.
+                        </motion.p>
 
-                            <motion.div
-                                animate={{ y: [0, 15, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                className="absolute cursor-pointer bottom-12 -right-4 lg:-right-8 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center gap-4 hover:scale-105 transition-transform"
-                            >
-                                <div className="bg-green-100 p-2 rounded-full text-green-600">
-                                    <ShieldCheck size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-dark text-sm">100% Natural</h4>
-                                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">No Preservatives</p>
-                                </div>
-                            </motion.div>
+                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 pt-4">
+                            <Link to="/get-started" className="btn btn-primary px-8 py-4 text-lg shadow-xl shadow-simmer-orange/20 hover:shadow-simmer-orange/40 hover:-translate-y-1">
+                                Order Trial Box
+                            </Link>
+                            <Link to="/menu" className="btn btn-accent px-8 py-4 text-lg bg-white/10 backdrop-blur-md border-2 border-simmer-yellow text-simmer-yellow hover:bg-simmer-yellow hover:text-simmer-dark">
+                                View Weekly Menu
+                            </Link>
                         </motion.div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
-            {/* Quality Promise - Grid Layout Fixed */}
-            <section className="py-20 bg-white">
-                <div className="container px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="text-center max-w-3xl mx-auto mb-16"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Quality Promise</h2>
-                        <p className="text-gray-600 text-lg">Uncompromising quality. Here is why FitHer lies at the heart of health.</p>
-                    </motion.div>
+            {/* Media Logos */}
+            <MediaLogos />
 
-                    <div className="grid md:grid-cols-3 gap-8">
+            {/* How It Works */}
+            <section className="py-16 bg-simmer-light">
+                <div className="container text-center">
+                    <h2 className="text-2xl md:text-4xl font-black text-simmer-orange mb-12 uppercase tracking-tight">How It Works</h2>
+                    <div className="grid md:grid-cols-3 gap-8 md:gap-12">
                         {[
-                            {
-                                icon: <Leaf size={32} />,
-                                title: "Healthy & Natural",
-                                desc: "No artificial colors, no preservatives. Just pure, farm-fresh ingredients.",
-                                color: "bg-green-50 text-green-600 border-green-100"
-                            },
-                            {
-                                icon: <Truck size={32} />,
-                                title: "On-Time Delivery",
-                                desc: "Our logistics ensure your meal arrives piping hot, exactly when you need it.",
-                                color: "bg-blue-50 text-blue-600 border-blue-100"
-                            },
-                            {
-                                icon: <ChefHat size={32} />,
-                                title: "Made Fresh",
-                                desc: "We start chopping and cooking only after your order is confirmed.",
-                                color: "bg-orange-50 text-orange-600 border-orange-100"
-                            }
+                            { title: "Choose Your Cuisine", icon: "https://cdn-icons-png.flaticon.com/512/3500/3500833.png", desc: "Select from Indian, Italian, Continental, or Keto plans." },
+                            { title: "Chefs Cook Fresh", icon: "https://cdn-icons-png.flaticon.com/512/1830/1830839.png", desc: "Our expert chefs prepare your meal with low oil and premium ingredients." },
+                            { title: "Fast Delivery", icon: "https://cdn-icons-png.flaticon.com/512/706/706164.png", desc: "Hot meals delivered to your home or office in eco-friendly packaging." }
                         ].map((item, idx) => (
                             <motion.div
                                 key={idx}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                whileHover={{ y: -5 }}
-                                className={`bg-white p-8 rounded-2xl border ${item.color} border-opacity-50 shadow-sm hover:shadow-xl transition-all duration-300`}
+                                transition={{ delay: idx * 0.2 }}
+                                className="flex flex-col items-center"
                             >
-                                <div className={`w-16 h-16 ${item.color} rounded-xl flex items-center justify-center mb-6`}>
-                                    {item.icon}
+                                <div className="w-20 h-20 mb-4">
+                                    <img src={item.icon} alt={item.title} className="w-full h-full object-contain opacity-80" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 text-dark">{item.title}</h3>
-                                <p className="text-gray-600 leading-relaxed font-medium">{item.desc}</p>
+                                <h3 className="text-lg font-bold uppercase text-simmer-orange mb-2">{item.title}</h3>
+                                <p className="text-simmer-dark max-w-xs mx-auto text-sm leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Ecosystem/Features Section - Improved Image Fit */}
-            <section className="py-20 bg-gray-50 overflow-hidden">
-                <div className="container px-4">
-                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="space-y-8"
-                        >
-                            <div>
-                                <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                                    More Than Just <br />
-                                    <span className="text-primary">Healthy Food.</span>
-                                </h2>
-                                <p className="text-lg text-gray-600 leading-relaxed">
-                                    We build a complete ecosystem around your well-being. From expert medical advice to adaptive nutrition.
-                                </p>
-                            </div>
+            {/* Running Text Banner */}
+            <RunningBanner />
 
-                            <div className="space-y-6">
-                                <motion.div
-                                    whileHover={{ x: 10 }}
-                                    className="flex gap-4 p-4 rounded-xl hover:bg-white transition-colors cursor-default"
-                                >
-                                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-sm shrink-0">
-                                        <Stethoscope size={24} />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xl font-bold mb-2">Free Expert Consultations</h4>
-                                        <p className="text-gray-600 text-sm">Access to top Dieticians & Gynecologists included.</p>
-                                    </div>
-                                </motion.div>
-                                <motion.div
-                                    whileHover={{ x: 10 }}
-                                    className="flex gap-4 p-4 rounded-xl hover:bg-white transition-colors cursor-default"
-                                >
-                                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-sm shrink-0">
-                                        <Clock size={24} />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xl font-bold mb-2">Flexible Schedules</h4>
-                                        <p className="text-gray-600 text-sm">Pause, skip, or swap meals instantly via our app.</p>
-                                    </div>
-                                </motion.div>
+            {/* Trust / Satisfaction (Orange Section) */}
+            <section className="py-16 bg-simmer-orange text-white">
+                <div className="container text-center">
+                    <h2 className="text-xl md:text-3xl font-bold uppercase tracking-widest mb-12 opacity-90">Healthy. Tasty. Sustainable.</h2>
+                    <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+                        {[
+                            { title: "Premium Ingredients", desc: "We use imported Italian durum wheat, authentic Indian spices, and farm-fresh veggies." },
+                            { title: "Low Calorie, High Taste", desc: "Our chefs master the art of making low-calorie food taste like a cheat meal." },
+                            { title: "Macro Balanced", desc: "Every meal is designed by nutritionists to help you hit your protein and fiber goals." }
+                        ].map((item, idx) => (
+                            <div key={idx} className="flex flex-col items-center">
+                                <div className="w-14 h-14 rounded-full border-2 border-simmer-yellow flex items-center justify-center text-simmer-yellow mb-4">
+                                    <CheckCircle size={28} />
+                                </div>
+                                <h3 className="text-lg font-black uppercase text-simmer-yellow mb-2">{item.title}</h3>
+                                <p className="text-white/90 max-w-sm mx-auto text-sm leading-relaxed">{item.desc}</p>
                             </div>
-                        </motion.div>
+                        ))}
+                    </div>
+                    <div className="mt-12">
+                        <Link to="/get-started" className="btn btn-primary px-10 py-4 text-base shadow-xl shadow-black/20">Check Pincode Availability</Link>
+                    </div>
+                </div>
+            </section>
 
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            className="relative h-[500px] w-full"
-                        >
-                            <div className="absolute inset-0 bg-secondary/10 rounded-[3rem] rotate-6 transform origin-bottom-right" />
-                            <img
-                                src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                alt="Healthy Lifestyle"
-                                className="relative w-full h-full object-cover rounded-[3rem] shadow-2xl hover:rotate-0 transition-transform duration-700"
-                            />
-                        </motion.div>
+            {/* Menu Preview Section */}
+            <section className="py-16 bg-simmer-light">
+                <div className="container text-center">
+                    <h2 className="text-3xl md:text-5xl font-black text-simmer-orange mb-12 uppercase">Global Menu Highlights</h2>
+
+                    <div className="grid md:grid-cols-4 gap-6 mb-10">
+                        {[
+                            { img: "https://images.unsplash.com/photo-1628294895950-98052523e036?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", title: "Paneer Tikka Masala Bowl", macros: "450 kcal • 25g Protein" },
+                            { img: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", title: "Whole Wheat Pesto Pasta", macros: "380 kcal • 15g Protein" },
+                            { img: "https://images.unsplash.com/photo-1606491956689-2ea28c674675?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", title: "Chicken Biryani (Brown Rice)", macros: "500 kcal • 30g Protein" },
+                            { img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", title: "Grilled Fish & Quinoa Salad", macros: "320 kcal • 28g Protein" }
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                whileHover={{ y: -5 }}
+                                className="bg-white p-4 rounded-3xl shadow-sm border border-gray-100"
+                            >
+                                <div className="aspect-square rounded-2xl overflow-hidden mb-4 relative">
+                                    <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                                    <div className="absolute top-2 left-2 bg-simmer-yellow text-simmer-dark text-[10px] font-bold px-2 py-1 rounded">HEALTHY SWAP</div>
+                                </div>
+                                <h4 className="font-bold text-simmer-dark text-left leading-tight mb-2 text-sm">{item.title}</h4>
+                                <p className="text-[10px] uppercase font-bold text-gray-500 text-left">{item.macros}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                    <Link to="/menu" className="btn btn-primary px-8 py-3">View Full Menu</Link>
+                </div>
+            </section>
+
+            {/* Testimonials */}
+            <section className="py-16 bg-simmer-purple text-white relative overflow-hidden">
+                <div className="container text-center relative z-10">
+                    <div className="mb-10">
+                        <h2 className="text-6xl font-black italic opacity-10 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">LOVED</h2>
+                        <h2 className="text-2xl md:text-3xl font-black uppercase mb-2 tracking-tight">Trusted by <span className="text-simmer-yellow">20,000+ Happy Eaters</span></h2>
+                        <p className="text-white/70 text-sm">Real reviews from Mumbai, Delhi, and Bangalore.</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {[
+                            { text: "I love the variety! One day I'm eating Dal Makhani, the next day it's Pesto Pasta. Never gets boring.", name: "Rahul Verma", loc: "Mumbai" },
+                            { text: "Lost 5kgs in 2 months. The brown rice Biryani fits perfectly in my diet plan. Highly recommend!", name: "Priya Sharma", loc: "Bangalore" },
+                            { text: "Quality ingredients and on-time delivery. It's the best investment for my health.", name: "Arjun Gupta", loc: "Delhi NCR" }
+                        ].map((review, i) => (
+                            <div key={i} className="bg-white text-simmer-dark p-6 rounded-2xl text-left relative">
+                                <div className="flex gap-1 text-simmer-orange mb-3">
+                                    <StarIcon size={14} fill="#0F766E" />
+                                    <StarIcon size={14} fill="#0F766E" />
+                                    <StarIcon size={14} fill="#0F766E" />
+                                    <StarIcon size={14} fill="#0F766E" />
+                                    <StarIcon size={14} fill="#0F766E" />
+                                </div>
+                                <p className="font-bold text-base mb-2">"Never gets boring!"</p>
+                                <p className="text-gray-600 text-xs mb-4 leading-relaxed">"{review.text}"</p>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 bg-simmer-yellow rounded-full flex items-center justify-center font-bold text-xs text-simmer-dark">{review.name[0]}</div>
+                                    <div>
+                                        <p className="font-bold text-xs">{review.name}</p>
+                                        <p className="text-[10px] text-gray-500">{review.loc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-12">
+                        <Link to="/experts" className="btn btn-primary px-10 py-3">Read All Reviews</Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Founders / Kitchen Story */}
+            <section className="py-16 bg-simmer-orange text-white">
+                <div className="container">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div className="relative">
+                            <div className="grid grid-cols-2 gap-4">
+                                <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" className="rounded-2xl rotate-3 shadow-lg hover:rotate-0 transition-all duration-500" />
+                                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" className="rounded-2xl -rotate-2 shadow-lg hover:rotate-0 transition-all duration-500 mt-8" />
+                            </div>
+                        </div>
+                        <div>
+                            <h2 className="text-3xl md:text-4xl font-black uppercase mb-4 leading-none">Global Inspiration <br /> Local Ingredients</h2>
+                            <p className="text-base opacity-90 mb-4 leading-relaxed">
+                                FitHer helps you enjoy the best of both worlds. We bring you international flavors cooked with fresh, locally sourced Indian ingredients.
+                            </p>
+                            <p className="text-base opacity-90 mb-6 leading-relaxed">
+                                Whether it's Italian Pasta or Indian Curry, we ensure it's healthy, hygienic, and absolutely delicious.
+                            </p>
+                            <Link to="/get-started" className="btn btn-primary px-8 py-3">Our Story</Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Newsletter */}
+            <section className="py-16 bg-simmer-yellow">
+                <div className="container text-center max-w-2xl">
+                    <h2 className="text-2xl font-black text-simmer-orange uppercase mb-2">JOIN THE FIT-FAMILY</h2>
+                    <p className="text-simmer-dark font-medium mb-6 text-sm">Get exclusive Indian healthy recipes and 30% off your first subscription.</p>
+                    <div className="bg-white p-2 rounded-full shadow-lg flex pl-6">
+                        <input type="email" placeholder="Enter your mobile number" className="flex-grow bg-transparent outline-none text-simmer-dark font-medium text-sm" />
+                        <button className="btn btn-primary rounded-full px-6 py-2 text-sm">Unlock Offer</button>
                     </div>
                 </div>
             </section>

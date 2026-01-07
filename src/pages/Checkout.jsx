@@ -19,7 +19,7 @@ const Checkout = () => {
     };
 
     return (
-        <div className="min-h-screen pt-24 pb-12 bg-light">
+        <div className="min-h-screen pt-24 pb-12 bg-simmer-light">
             <div className="container max-w-4xl">
                 <h1 className="text-3xl font-bold mb-8">Secure Checkout</h1>
 
@@ -29,35 +29,35 @@ const Checkout = () => {
                         {/* Address Section */}
                         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                             <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                <MapPin size={20} className="text-primary" /> Delivery Address
+                                <MapPin size={20} className="text-simmer-orange" /> Delivery Address
                             </h2>
                             <div className="space-y-4">
-                                <input type="text" placeholder="Full Name" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-primary" />
+                                <input type="text" placeholder="Full Name" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-simmer-orange" />
                                 <div className="grid grid-cols-2 gap-4">
-                                    <input type="text" placeholder="Phone" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-primary" />
-                                    <input type="text" placeholder="Pincode" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-primary" />
+                                    <input type="text" placeholder="Phone" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-simmer-orange" />
+                                    <input type="text" placeholder="Pincode" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-simmer-orange" />
                                 </div>
-                                <textarea placeholder="Complete Address (Tower, Flat No, Landmark)" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-primary h-24" />
+                                <textarea placeholder="Complete Address (Tower, Flat No, Landmark)" className="w-full p-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-simmer-orange h-24" />
                             </div>
                         </div>
 
                         {/* Payment Section */}
                         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                             <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                <CreditCard size={20} className="text-primary" /> Payment Method
+                                <CreditCard size={20} className="text-simmer-orange" /> Payment Method
                             </h2>
                             <div className="space-y-3">
-                                <label className="flex items-center gap-3 p-4 border border-primary/20 bg-primary/5 rounded-xl cursor-pointer transition-all">
-                                    <input type="radio" name="payment" defaultChecked className="text-primary" />
+                                <label className="flex items-center gap-3 p-4 border border-simmer-orange/20 bg-simmer-orange/5 rounded-xl cursor-pointer transition-all">
+                                    <input type="radio" name="payment" defaultChecked className="text-simmer-orange" />
                                     <span className="font-bold">UPI / GPay / PhonePe</span>
                                     <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Fastest</span>
                                 </label>
                                 <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
-                                    <input type="radio" name="payment" className="text-primary" />
+                                    <input type="radio" name="payment" className="text-simmer-orange" />
                                     <span>Credit / Debit Card</span>
                                 </label>
                                 <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
-                                    <input type="radio" name="payment" className="text-primary" />
+                                    <input type="radio" name="payment" className="text-simmer-orange" />
                                     <span>Cash on Delivery</span>
                                 </label>
                             </div>

@@ -10,9 +10,44 @@ const questions = [
         options: ["Weight Loss", "Muscle Gain", "PCOD/F Management", "Post-Pregnancy Recovery", "Diabetes Management"]
     },
     {
+        id: 'gender',
+        title: "Gender",
+        options: ["Male", "Female", "Prefer not to say"]
+    },
+    {
+        id: 'activity',
+        title: "How active are you?",
+        options: ["Sedentary (Desk Job)", "Lightly Active (1-3 days/week)", "Active (Daily Exercise)", "Athlete"]
+    },
+    {
         id: 'diet',
         title: "Dietary Preference",
-        options: ["Vegetarian", "Non-Vegetarian", "Eggetarian", "Jain (No Onion/Garlic)"]
+        options: ["Vegetarian", "Non-Vegetarian", "Eggetarian", "Jain (No Onion/Garlic)", "Vegan"]
+    },
+    {
+        id: 'complications',
+        title: "Any medical conditions we should know?",
+        options: ["None", "Diabetes (Type 1/2)", "PCOS/PCOD", "Hypertension (BP)", "Thyroid"]
+    },
+    {
+        id: 'sugar',
+        title: "Sugar Preference",
+        options: ["No Sugar", "Low Sugar", "Normal Sugar", "Jaggery Only"]
+    },
+    {
+        id: 'salt',
+        title: "Salt Preference",
+        options: ["Low Sodium", "Normal Salt"]
+    },
+    {
+        id: 'oil',
+        title: "Oil Usage Preference",
+        options: ["Minimal (Boiled/Steamed)", "Low Oil (<1 tsp/meal)", "Standard Home Style"]
+    },
+    {
+        id: 'lactose',
+        title: "Are you Lactose Intolerant?",
+        options: ["Yes, Avoid Dairy", "No, I love Dairy"]
     },
     {
         id: 'meals',
@@ -124,8 +159,17 @@ const GetPlan = () => {
                         animate={{ opacity: 1, y: 0 }}
                     >
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold mb-4">Your Custom Indie-Plan</h2>
-                            <p className="text-gray-600">Tailored for: <span className="font-bold text-dark">{answers.goal}</span> • <span className="font-bold text-dark">{answers.diet}</span></p>
+                            <span className="inline-block px-4 py-1 rounded-full bg-green-100 text-green-700 font-bold text-sm mb-4">
+                                ANALYSIS COMPLETE
+                            </span>
+                            <h2 className="text-4xl font-bold mb-4">Your Custom Life-Plan</h2>
+                            <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                                Based on your goal of <span className="font-bold text-dark">{answers.goal}</span> and lifestyle as a <span className="font-bold text-dark">{answers.diet} {answers.gender}</span> who is <span className="font-bold text-dark">{answers.activity}</span>.
+                                {answers.complications !== "None" && <span> We have also noted your <span className="font-bold text-red-500">{answers.complications}</span> condition and adjusted the plan.</span>}
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-2 mt-4 text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                <span>{answers.sugar}</span> • <span>{answers.salt}</span> • <span>{answers.oil}</span> • <span>{answers.lactose.includes("Avoid") ? "Lactose Free" : "Dairy Included"}</span>
+                            </div>
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-8">

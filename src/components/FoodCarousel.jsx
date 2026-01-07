@@ -64,7 +64,7 @@ const FoodCarousel = () => {
                 transition={{ delay: 0.3 }}
                 className="absolute bottom-8 left-8 text-white z-10"
             >
-                <div className="bg-primary/90 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold inline-block mb-2 text-white uppercase tracking-wider">
+                <div className="bg-simmer-orange/90 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold inline-block mb-2 text-simmer-yellow uppercase tracking-wider">
                     Our Menu Highlights
                 </div>
                 <h3 className="text-3xl font-bold">{foodItems[currentIndex].title}</h3>

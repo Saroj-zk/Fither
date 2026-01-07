@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-[#FAFAFA] text-dark font-sans antialiased;
+    @apply font-sans bg-simmer-light text-simmer-dark antialiased;
   }
 
   h1,
@@ -15,41 +15,26 @@
   h4,
   h5,
   h6 {
-    @apply font-heading font-bold;
+    @apply font-heading font-black uppercase tracking-tight text-simmer-orange;
   }
 }
 
 @layer components {
-
-  /* Container override if needed, though Tailwind has a default. 
-     We match the design system I set up: max-w-7xl, centered. */
   .container {
     @apply max-w-7xl mx-auto px-6;
   }
 
-  /* Button Components */
   .btn {
-    @apply inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 transform cursor-pointer border-none;
+    @apply inline-flex items-center justify-center rounded-full font-bold uppercase tracking-wide transition-transform duration-300 transform active:scale-95 cursor-pointer border-none px-8 py-4 text-sm md:text-base;
   }
 
+  /* Primary: Yellow Button, Orange Text (Best on Dark/Orange backgrounds) */
   .btn-primary {
-    @apply bg-primary text-white shadow-lg shadow-primary/30 hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-primary/40;
+    @apply bg-simmer-yellow text-simmer-orange hover:brightness-110 shadow-lg shadow-black/10;
   }
 
-  .btn-secondary {
-    @apply bg-white text-dark border-2 border-dark hover:bg-dark hover:text-white;
+  /* Secondary/Accent: Orange Button, Yellow Text (Best on Light backgrounds) */
+  .btn-accent {
+    @apply bg-simmer-orange text-simmer-yellow hover:brightness-110 shadow-lg shadow-simmer-orange/30;
   }
-}
-
-/* Custom scrollbar to match the "Design Aesthetics" */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 rounded-full hover:bg-gray-400;
 }
